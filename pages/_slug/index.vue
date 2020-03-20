@@ -21,18 +21,29 @@ export default {
 };
 </script>
 
-<style scoped>
-img {
-  width: 75%;
-}
-
+<style scoped lang="scss">
 .container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+
+  h1 {
+    text-align: center;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    text-align: center;
+  }
+
+  p {
+    text-align: left;
+  }
 }
 
 .title {

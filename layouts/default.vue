@@ -28,6 +28,9 @@
       </b-navbar>
     </div>
     <nuxt />
+    <div class="footer">
+      <div>Nuxt Blog - Copyright 2020</div>
+    </div>
   </div>
 </template>
 
@@ -43,7 +46,7 @@ html {
 }
 
 body {
-  background: white;
+  background: rgb(255, 255, 255);
 }
 
 a {
@@ -51,7 +54,15 @@ a {
 }
 
 a:hover {
-  color: $accent-color;
+  color: $nuxt-light-green;
   text-decoration: none;
+}
+
+.footer {
+  background: $dark;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  color: white;
 }
 </style>

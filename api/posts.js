@@ -8,6 +8,12 @@ const api = new GhostContentAPI({
   version: 'v2'
 });
 
+export async function getAdminData() {
+  return await api.settings.browse({}).catch((err) => {
+    console.log(err);
+  });
+}
+
 // async to get posts, pass in post options
 export async function getPosts() {
   return await api.posts

@@ -2,14 +2,29 @@
   <div class="">
     <main>
       <div class="container">
-        <div class="row">
-          <div class="home-header col-12">
-            <h1>Self Directed Study</h1>
-            <p>
-              My self directed study site using Nuxt.js and Headless Ghost CMS
-            </p>
+        <div class="home-header">
+          <div class="row home-header-row">
+            <div class="left-header col-6">
+              <h1 class="display-1">
+                Hello!
+              </h1>
+              <h2 class="display-4">Welcome to my self-directed study blog.</h2>
+            </div>
+            <div class="right-header col-6 logobox">
+              <img
+                class="header-logo"
+                :src="adminData.logo"
+                alt="Nuxt and Ghost blog"
+              />
+              <p>
+                Here, I will be documenting how I got my blog up and running
+                using Nuxt.js and Ghost, along with some other helpful
+                resources.
+              </p>
+            </div>
           </div>
         </div>
+
         <ThreePostWidget
           header="Recent Blog Posts"
           :recentposts="posts"
@@ -26,7 +41,7 @@
 </template>
 
 <script>
-import { getLast3Posts, getLast3Resources } from '~/api/posts';
+import { getLast3Posts, getLast3Resources, getAdminData } from '~/api/posts';
 import ThreePostWidget from '~/components/ThreePostWidget';
 
 export default {
@@ -34,12 +49,45 @@ export default {
   async asyncData() {
     const posts = await getLast3Posts();
     const resources = await getLast3Resources();
-    return { posts, resources };
+    const adminData = await getAdminData();
+    return { posts, resources, adminData };
   }
 };
 </script>
 
 <style scoped lang="scss">
+.home-header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  .home-header-row {
+  }
+
+  .header-logo {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-header {
+    background: $nuxt-light-green;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .right-header {
+    margin-top: 2rem;
+    text-align: center;
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}
+
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

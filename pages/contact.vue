@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <main>
       <h1>{{ page.title }}</h1>
-      <img :src="page.feature_image" alt="an image" />
+      <img class="img-fluid" :src="page.feature_image" alt="an image" />
       <div class="content">
         <div v-html="page.html">{{ page.html }}</div>
       </div>
@@ -43,5 +43,9 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  img {
+    width: 60%;
+  }
 }
 </style>

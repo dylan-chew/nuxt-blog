@@ -50,11 +50,12 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
-    // Doc: https://www.npmjs.com/package/@nuxtjs/vuetify
-    //'@nuxtjs/vuetify',
     '@nuxtjs/style-resources'
+  ],
+
+  devModules: [
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
   ],
 
   styleResources: {

@@ -1,70 +1,106 @@
 <template>
-  <div class="container">
-    <main>
-      <h1>{{ post.title }}</h1>
-      <img :src="post.feature_image" alt="an image" />
-      <div class="content">
-        <div v-html="post.html">{{ post.html }}</div>
+  <main>
+    <div class="container-fluid full-page">
+      <div class="container post-container">
+        <div class="row">
+          <div class="col-12 header-container">
+            <h1>{{ post.title }}</h1>
+          </div>
+          <div class="col-12 image-container">
+            <img
+              :src="post.feature_image"
+              alt="an image"
+              :class="'vertical-image'"
+            />
+          </div>
+          <div class="content col-12">
+            <div v-html="post.html">{{ post.html }}</div>
+          </div>
+        </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
 import { getSinglePost } from '~/api/posts';
+import Prism from '~/plugins/prism';
 
 export default {
+  head() {
+    return {
+      title: this.post.title,
+      meta: [
+        {
+          hid: this.post.title,
+          name: this.post.title,
+          content: this.post.title
+        }
+      ]
+    };
+  },
   async asyncData({ params }) {
     const post = await getSinglePost(params.slug);
     return { post };
+  },
+  mounted() {
+    Prism.highlightAll();
   }
 };
 </script>
 
 <style scoped lang="scss">
-.container {
-  margin: 0 auto;
+.full-page {
+  background: $nuxt-light-green;
+}
+
+.post-container {
+  margin-top: 3rem;
+  padding-top: 3rem;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: white;
 
-  h1 {
-    text-align: center;
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    h1 {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-    text-align: center;
+  .image-container {
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .horizontal-image {
+      width: 50%;
+    }
+
+    .vertical-image {
+      max-height: 20rem;
+      width: auto;
+      height: auto;
+    }
   }
 
-  p {
-    text-align: left;
+  .content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 0 5rem;
   }
-}
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  .kg-image {
+    width: 60%;
+  }
 }
 </style>

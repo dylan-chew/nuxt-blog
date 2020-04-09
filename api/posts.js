@@ -30,7 +30,7 @@ export async function getPosts() {
 export async function getResources() {
   return await api.posts
     .browse({
-      filter: "tags: 'resources",
+      filter: "tags:['resources']",
       limit: 'all',
       include: 'tags, authors'
     })

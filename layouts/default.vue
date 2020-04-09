@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="dark">
+      <b-navbar class="fixed-top" toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand>
           <nuxt-link to="/">Nuxt Blog</nuxt-link>
         </b-navbar-brand>
@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 html {
   font-size: 16px;
   word-spacing: 1px;

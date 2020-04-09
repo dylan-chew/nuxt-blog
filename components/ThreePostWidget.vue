@@ -12,9 +12,11 @@
             <h4>
               <nuxt-link :to="{ path: post.slug }">{{ post.title }}</nuxt-link>
             </h4>
-            <nuxt-link :to="{ path: post.slug }"
-              ><img :src="post.feature_image" alt="an image"
-            /></nuxt-link>
+            <div class="image-container">
+              <nuxt-link :to="{ path: post.slug }">
+                <img :src="post.feature_image" alt="an image" />
+              </nuxt-link>
+            </div>
 
             <div class="content">
               <p>{{ post.excerpt }}</p>
@@ -38,8 +40,8 @@ export default {
 
 <style scoped lang="scss">
 .widget-container {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .recent-posts-container {
@@ -60,12 +62,29 @@ export default {
       color: $nuxt-light-green;
     }
   }
-  img {
-    width: 80%;
-    &:hover {
-      -webkit-filter: brightness(110%);
+  .image-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 20vh;
+    height: 20vh;
+    overflow: hidden;
+
+    @media only screen and (min-width: 992px) {
+      width: 25vh;
+      height: 25vh;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      &:hover {
+        -webkit-filter: brightness(110%);
+      }
     }
   }
+
   .recent-post-card {
     display: block;
     justify-content: center;
@@ -78,16 +97,21 @@ export default {
   }
 
   .btn {
-    margin-left: 85%;
+    margin-left: 80%;
     float: right;
     margin-bottom: 1.5rem;
     background: $nuxt-light-green;
     a {
       color: white;
+      text-decoration: none;
     }
 
     &:hover {
       background: $nuxt-dark-green;
+    }
+
+    @media only screen and (min-width: 992px) {
+      margin-left: 85%;
     }
   }
 }

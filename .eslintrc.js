@@ -18,6 +18,8 @@ module.exports = {
   // add your custom rules here
   rules: {
     'nuxt/no-cjs-in-config': 'off',
-    'no-return-await': 'off'
+    'no-return-await': 'off',
+    'vue/require-default-prop': 'off',
+    'no-console': 'off'
   }
 };

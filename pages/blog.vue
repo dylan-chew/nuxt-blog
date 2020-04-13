@@ -23,6 +23,33 @@ import PostCardsList from '~/components/PostCardsList';
 import Pagination from '~/components/Pagination';
 
 export default {
+  components: { PostCardsList, Pagination },
+  async asyncData() {
+    const posts = await getPosts();
+    return { posts };
+  },
+  data() {
+    return { pageNumber: 1 };
+  },
+
+  computed: {
+    pagePosts() {
+      return this.posts.slice((this.pageNumber - 1) * 3, this.pageNumber * 3);
+    },
+    totalPages() {
+      return Math.ceil(this.posts.length / 3);
+    }
+  },
+  methods: {
+    increasePageNumber() {
+      window.scrollTo(0, 0);
+      return (this.pageNumber += 1);
+    },
+    decreasePageNumber() {
+      window.scrollTo(0, 0);
+      return (this.pageNumber -= 1);
+    }
+  },
   head() {
     return {
       title: 'Blog',
@@ -34,30 +61,6 @@ export default {
         }
       ]
     };
-  },
-  components: { PostCardsList, Pagination },
-  async asyncData() {
-    const posts = await getPosts();
-    return { posts };
-  },
-  data() {
-    return { pageNumber: 1 };
-  },
-  methods: {
-    increasePageNumber() {
-      return (this.pageNumber += 1);
-    },
-    decreasePageNumber() {
-      return (this.pageNumber -= 1);
-    }
-  },
-  computed: {
-    pagePosts() {
-      return this.posts.slice((this.pageNumber - 1) * 3, this.pageNumber * 3);
-    },
-    totalPages() {
-      return Math.ceil(this.posts.length / 3);
-    }
   }
 };
 </script>

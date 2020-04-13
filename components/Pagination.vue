@@ -2,8 +2,8 @@
   <div v-if="totalpages > 1" class="col-12 pagination">
     <button
       :disabled="pagenumber <= 1"
-      @click="clickedPrev"
       class="btn pagination-btn prev-btn"
+      @click="clickedPrev"
     >
       Prev
     </button>
@@ -12,8 +12,8 @@
     </div>
     <button
       :disabled="pagenumber >= totalpages"
-      @click="clickedNext"
       class="btn pagination-btn next-btn"
+      @click="clickedNext"
     >
       Next
     </button>
@@ -22,8 +22,8 @@
 
 <script>
 export default {
-  props: ['pagenumber', 'totalpages'],
   name: 'Pagination',
+  props: { pagenumber: Number, totalpages: Number },
   methods: {
     clickedNext() {
       this.$emit('increasePageNumber');

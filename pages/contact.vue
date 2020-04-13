@@ -4,6 +4,7 @@
       <h1>{{ page.title }}</h1>
       <img class="img-fluid" :src="page.feature_image" alt="an image" />
       <div class="content">
+        <!-- eslint-disable-next-line  -->
         <div v-html="page.html">{{ page.html }}</div>
       </div>
     </main>
@@ -14,6 +15,10 @@
 import { getPage } from '~/api/posts';
 
 export default {
+  async asyncData() {
+    const page = await getPage('contact');
+    return { page };
+  },
   head() {
     return {
       title: 'Contact',
@@ -25,10 +30,6 @@ export default {
         }
       ]
     };
-  },
-  async asyncData() {
-    const page = await getPage('contact');
-    return { page };
   }
 };
 </script>

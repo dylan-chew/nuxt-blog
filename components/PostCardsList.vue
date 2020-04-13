@@ -26,13 +26,15 @@
 </template>
 
 <script>
-export default {
-  props: ['currentposts'],
-  name: 'PostCardsList'
-};
+export default { name: 'PostCardsList', props: { currentposts: Array } };
 </script>
 
 <style scoped lang="scss">
+.post-list {
+  padding: 0;
+  margin: 0 1rem 0 1rem;
+}
+
 li {
   list-style: none;
 }

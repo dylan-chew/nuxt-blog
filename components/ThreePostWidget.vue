@@ -5,9 +5,9 @@
       <div class="recent-posts-container col-12">
         <div class="row">
           <div
-            class="recent-post-card col-4 mx-auto"
             v-for="(post, index) in recentposts"
             :key="index"
+            class="recent-post-card col-4 mx-auto"
           >
             <h4>
               <nuxt-link :to="{ path: post.slug }">{{ post.title }}</nuxt-link>
@@ -33,8 +33,8 @@
 
 <script>
 export default {
-  props: ['recentposts', 'header', 'viewmorelink'],
-  name: 'ThreePostWidget'
+  name: 'ThreePostWidget',
+  props: { recentposts: Array, header: String, viewmorelink: String }
 };
 </script>
 

@@ -142,6 +142,13 @@ import { getLast3Posts, getLast3Resources, getAdminData } from '~/api/posts';
 import ThreePostWidget from '~/components/ThreePostWidget';
 
 export default {
+  components: { ThreePostWidget, KinesisContainer, KinesisElement },
+  async asyncData() {
+    const posts = await getLast3Posts();
+    const resources = await getLast3Resources();
+    const adminData = await getAdminData();
+    return { posts, resources, adminData };
+  },
   head() {
     return {
       title: 'My Nuxt Blog - Front Page',
@@ -153,13 +160,6 @@ export default {
         }
       ]
     };
-  },
-  components: { ThreePostWidget, KinesisContainer, KinesisElement },
-  async asyncData() {
-    const posts = await getLast3Posts();
-    const resources = await getLast3Resources();
-    const adminData = await getAdminData();
-    return { posts, resources, adminData };
   }
 };
 </script>
@@ -195,12 +195,21 @@ export default {
     p {
       font-size: 1.5rem;
     }
+
+    @media only screen and (max-width: 414px) {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 414px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }
 
 .intro-container {
   background: white;
-  height: 100vh;
+  margin-bottom: 3rem;
 
   .what-is-container {
     background: white;
@@ -210,8 +219,8 @@ export default {
   }
 
   .what-nuxt-row {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
 
   .what-ghost-row {

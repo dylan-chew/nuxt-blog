@@ -12,6 +12,15 @@
             <h2>
               <nuxt-link :to="{ path: post.slug }">{{ post.title }}</nuxt-link>
             </h2>
+            <div v-if="screenSize < 768">
+              <div class="mobile-image-container">
+                <img
+                  :src="post.feature_image"
+                  alt="an image"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
             <p>{{ post.excerpt }}</p>
           </div>
         </div>
@@ -26,7 +35,25 @@
 </template>
 
 <script>
-export default { name: 'PostCardsList', props: { currentposts: Array } };
+export default {
+  name: 'PostCardsList',
+  props: { currentposts: Array },
+  data() {
+    return {
+      screenSize: 0
+    };
+  },
+  mounted() {
+    this.screenSize = window.innerWidth;
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  methods: {
+    handleResize() {
+      this.screenSize = window.innerWidth;
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">

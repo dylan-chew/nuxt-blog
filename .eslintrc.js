@@ -20,6 +20,7 @@ module.exports = {
     'nuxt/no-cjs-in-config': 'off',
     'no-return-await': 'off',
     'vue/require-default-prop': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'vue/comment-directive': 0
   }
 };
